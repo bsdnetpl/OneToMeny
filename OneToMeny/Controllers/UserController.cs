@@ -16,7 +16,7 @@ namespace OneToMeny.Controllers
             _userService = userService;
         }
 
-        [HttpPost("")]
+        [HttpPost("AddUser")]
         public async Task<ActionResult<Users>> AddUser(UserDto userDto)
         {
             Role role = new Role()
