@@ -16,14 +16,13 @@ namespace OneToMeny.Controllers
             _userService = userService;
         }
 
-        [HttpPost("AddUser")]
+        [HttpPost("")]
         public async Task<ActionResult<Users>> AddUser(UserDto userDto)
         {
             Role role = new Role()
             {
-                Name = "Admin",
-                Description = "Some date",
-                UserId = 1
+                Name = userDto.Role,
+                Description = userDto.Description,
             };
             Users users = new Users()
             {
@@ -34,6 +33,7 @@ namespace OneToMeny.Controllers
                 name = userDto.name,
             };
             users.roles.Add(role);
+
             var userReturn = _userService.AddUserAsync(users);
             return await userReturn;
         }
