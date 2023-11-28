@@ -21,6 +21,7 @@ namespace OneToMeny.DBSConnect
                 .WithOne(w => w.Users)
                 .HasForeignKey(w => w.UserId)
                 .OnDelete(DeleteBehavior.ClientCascade);
+                ep.HasIndex(w => w.name);
             });
                
                 

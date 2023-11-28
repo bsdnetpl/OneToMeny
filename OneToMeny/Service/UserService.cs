@@ -1,5 +1,7 @@
-﻿using OneToMeny.DBSConnect;
+﻿using Microsoft.EntityFrameworkCore;
+using OneToMeny.DBSConnect;
 using OneToMeny.Model;
+using System.Data.SqlTypes;
 
 namespace OneToMeny.Service
 {
@@ -18,5 +20,28 @@ namespace OneToMeny.Service
             return users;
 
         }
+        public Users GetUserByName(string name)
+        {
+
+            var getUser = _connectToMssql.UsersDB
+                .Include(i => i.roles)
+                .Where(f => f.name == name)
+                .ToList()
+                .FirstOrDefault();
+            return getUser;
+
+        }
+        public async Task<bool> DeleteUser(string name)
+        {
+            var getUser = _connectToMssql.UsersDB
+                   .Include(i => i.roles)
+                   .Where(f => f.name == name)
+                   .ToList()
+                   .FirstOrDefault();
+            _connectToMssql.UsersDB.Remove(getUser);
+            await _connectToMssql.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

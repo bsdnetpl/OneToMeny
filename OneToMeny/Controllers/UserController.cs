@@ -37,5 +37,15 @@ namespace OneToMeny.Controllers
             var userReturn = _userService.AddUserAsync(users);
             return await userReturn;
         }
+        [HttpGet("GetUserByName")]
+        public ActionResult<Users> GetUsers(string name)
+        {
+           return _userService.GetUserByName(name);
+        }
+        [HttpDelete("DeleteUserByName")]
+        public async Task<bool>DelUserByName(string name)
+        {
+            return await _userService.DeleteUser(name);
+        }
     }
 }

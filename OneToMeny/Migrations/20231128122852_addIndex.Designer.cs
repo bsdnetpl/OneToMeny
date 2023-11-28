@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OneToMeny.DBSConnect;
 
@@ -11,9 +12,11 @@ using OneToMeny.DBSConnect;
 namespace OneToMeny.Migrations
 {
     [DbContext(typeof(ConnectToMssql))]
-    partial class ConnectToMssqlModelSnapshot : ModelSnapshot
+    [Migration("20231128122852_addIndex")]
+    partial class addIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
